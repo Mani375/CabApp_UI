@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<form method=POST>
+<input type="hidden" name="ip" value="1.1.1.1"><br>
+<label>Journey Date:</label><br>
+<input type="date" name="journeyDate" max="2021-04-30" min="2021-04-19" checked><br>
+<label>Pickup Time:</label><br>
+<input type="time" name="pickupTime" id="pickupTime"/><br>
+<label>GST:</label><br>
+<input type="number" name="gst" value="10" readonly/><br>
+Senior Citizen:<br>
+<input type="radio" name="senior" value="Yes"/>Yes<br>
+<input type="radio" name="senior" value="No" checked/>No<br>
+Gender:<br>
+<input type="radio" name="gender" value="Male"/>Male<br>
+<input type="radio" name="gender" value="Female"/>Female<br>
+<input type="radio" name="gender" value="Transgender"/>Transgender<br>
+<button>Submit</button>
+</form>
+</body>
+</html>
