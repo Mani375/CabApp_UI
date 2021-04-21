@@ -11,9 +11,10 @@
 <h1>CabApp Login</h1><br />
 <form method="POST" onsubmit="login()" action="cabtype.html">
 <label for="mobileNo">Enter your Mobile Number:</label><br>
-<input type="number"  id="mobileNo" name="mobileNo" autocomplete="on" max="9999999999" placeholder="Mobile Number" required><br />
+<input type="number"  id="mobileNo" name="mobileNo" autocomplete="on" max="9999999999" placeholder="Mobile Number" required><br><br>
 <label for="password">Enter your Password:</label><br>
-<input type="password" id="password" name="password" placeholder="password" required><br />
+<input type="password" id="password" name="password" placeholder="password" required><br>
+<p style="color:red;" id="valid"></p>
 <button>Submit</button>
 <button type="button" onclick="hello()">Click Me</button>
 <button type="reset">Reset</button><br>
@@ -23,19 +24,27 @@
     function login(){
         event.preventDefault();
         //alert("Login In Successful....");
-        let MobileNo=document.querySelector("#mobileNo").value;
-        alert("MobileNumber: " + MobileNo);
+        let MobileNo=document.querySelector("#mobileNo").value;//# - By Id
+       // alert("MobileNumber: " + MobileNo);
         let Password=document.querySelector("#password").value;
-        alert("Password: " + Password);
-        if(MobileNo.length<10 && Password.length<8)
-            alert("Invalid Login");
-        else if(MobileNo.length<10)
-            alert("Invalid Mobile Number");
-        else if(Password.length<8)
-            alert("Invalid Password");
-        else
-            window.location.href = 'Second.html';
+       // alert("Password: " + Password);
+        if(MobileNo.length<10 && Password.length<8){
+            //alert("Invalid Login");
+            document.getElementById("valid").innerHTML = "Invalid Login";
+            }
+        else if(MobileNo.length<10){
+            //alert("Invalid Mobile Number");
+            document.getElementById("valid").innerHTML = "Invalid Mobile Number";
+            }
+        else if(Password.length<8){
+            //alert("Invalid Password");
+            document.getElementById("valid").innerHTML = "Invalid Password";
+            }
+        else{
+            window.location.href = 'cabtype.html';
             alert("Login Successful");
+        }
+            //document.getElementById("valid").innerHTML = "Login Successful";
     }
     function hello(){
         alert("Hello!!!");
