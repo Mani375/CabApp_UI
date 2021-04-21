@@ -13,14 +13,14 @@
     <form method=POST>
         <input type="hidden" name="ip" value="1.1.1.1"><br>
         <label>Journey Date:</label><br>
-        <input type="date" name="journeyDate" max="2021-04-30" min="2021-04-19" checked><br><br>
+        <input type="date" name="journeyDate" max="2021-04-30" min="2021-04-19" checked required><br><br>
         <label>Pickup Time:</label><br>
-        <input type="time" name="pickupTime" id="pickupTime"/><br><br>
+        <input type="time" name="pickupTime" id="pickupTime" required><br><br>
         <label>GST:</label><br>
-        <input type="number" name="gst" value="10" readonly/><br><br>
+        <input type="number" name="gst" value="10" readonly required/><br><br>
         Senior Citizen:<br>
-        <input type="radio" name="senior" value="Yes"/>Yes
-        <input type="radio" name="senior" value="No" />No<br><br>
+        <input type="radio" name="senior" value="Yes" />Yes
+        <input type="radio" name="senior" value="No"  />No<br><br>
         Gender:<br>
         <input type="radio" name="gender" value="Male"/>Male
         <input type="radio" name="gender" value="Female"/>Female
