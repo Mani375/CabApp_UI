@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+	<center>
+    <h3>USER PREFERENCE</h3>
+	<form onsubmit="fareCalculator()">
+		<label>Cab Types:</label><br> 
+		<select id="CabType">
+			<option disabled>--Select Cab type--</option>
+			<option value="AUTO">Auto</option>
+			<option value="MINI">Mini</option>
+			<option value="PRIME">Prime</option>
+		</select><br><br>
+		 <label>Enter the Kms:</label><br> <input type="number" id="Kms"
+			placeholder="Enter the Kms" autocomplete="on" required><br><br>
+		<button>Calculate</button>
+		<p id="fare"></p>
+	<p id="gst"></p>
+	<p id="total"></p>
+		<button style="visibility:hidden" id="continue" type="button" onclick="nextPage()">Continue</button>
+	</form>
+</center>
+</body>
+	<script>
+		function fareCalculator(){
+			event.preventDefault();
+			let cabType=document.querySelector("#CabType").value;
+        	let dist=document.querySelector("#Kms").value;
+			localStorage.setItem("cabType",cabType);
+			localStorage.setItem("dist",dist);
+			let fare=0;
+			//alert("Distance : " + dist);
+			//alert("Cab Type : " + cabType);
+			if(cabType.includes("AUTO"))
+				fare = 10 * dist;
+			else if(cabType.includes("MINI"))
+				fare = 15 * dist;
+			else if(cabType.includes("PRIME"))
+				fare = 20 * dist;
+			//alert("Fare : " + fare);
+			let gst =(fare * 0.07);
+			gst = parseInt(gst);
+			let total = gst + fare;
+			localStorage.setItem("fare",fare);
+			localStorage.setItem("gst",gst);
+			localStorage.setItem("total",total);
+			//alert("GST : " + gst);
+			//alert("Total Amount : Rs." + total);
+			document.getElementById("fare").innerHTML = "Estimated Fare : " + fare;
+			document.getElementById("gst").innerHTML = "GST - 7%       : " + gst;
+			document.getElementById("total").innerHTML = "Total Amount   :" + total;
+			document.getElementById("continue").style.visibility = "visible";
+			//window.location.href="nextpage.html?total=" + total;
+			//window.location.href="userdata.html?Total=" + total;
+		}
+		function nextPage(){
+			event.preventDefault();
+			window.location.href="userdata.html";
+		}
+	</script>
+</html>

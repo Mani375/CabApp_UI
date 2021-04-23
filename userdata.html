@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body id="setmin">
+    <center>
+    <div id="book">
+    <h3>Enter Journey Details</h3>
+    <form method=POST>
+        <input type="hidden" name="ip" value="1.1.1.1"><br>
+        <label>Journey Date:</label><br>
+        <input type="date" name="journeyDate" id="journeyDate" checked><br><br>
+        <label>Pickup Time:</label><br>
+        <input type="time" name="pickupTime" id="pickupTime"/><br><br>
+        <label>Senior Citizen:</label><br>
+        <input type="radio" name="senior" id="senior" value="Yes"/>Yes
+        <input type="radio" name="senior" id="senior" value="No" />No<br><br>
+        Gender:<br>
+        <input type="radio" name="gender" value="Male"/>Male
+        <input type="radio" name="gender" value="Female"/>Female
+        <input type="radio" name="gender" value="Transgender"/>Transgender<br><br>
+        <button onclick="book()">Confirm</button>
+        </form>
+    </div>
+        </center>
+</body>
+<script>
+    
+    document.getElementById("setmin").addEventListener("load",setMinMax());
+       function setMinMax(){
+        let todayStr = new Date().toJSON().substr(0,10);
+        document.querySelector("#journeyDate").setAttribute("min", todayStr);
+        let endDate = new Date();                           
+        endDate.setDate(endDate.getDate()+5);                                  
+        let endDateStr = endDate.toJSON().substr(0,10);                               
+        document.querySelector("#journeyDate").setAttribute("max", endDateStr);
+    }
+    function book(){
+        event.preventDefault();
+        let journeyDate=document.querySelector("#journeyDate").value;
+        localStorage.setItem("journeyDate",journeyDate);
+        //alert(journeyDate);
+        let pickupTime=document.querySelector("#pickupTime").value;
+        localStorage.setItem("pickupTime",pickupTime);
+        //alert(pickupTime);
+        let hour=pickupTime.substr(0,2);
+        //alert(hour);
+        let seniorCitizen=document.querySelector("#senior").checked;
+        //alert("The Senior Citizen : " + seniorCitizen);
+        let total = localStorage.getItem("total");  
+        total = parseInt(total);
+       checkPeakHour(hour,total,seniorCitizen);
+       window.location.href="displayJourneyDetails.html";
+    }
+function checkPeakHour(hour,total,seniorCitizen){
+        let peakHourTotal;
+        let peakHourCharge;
+        if (hour >= 17 && hour <= 19) {
+            total = parseInt(total);
+			peakHourCharge = (0.125 * total);
+            peakHourTotal = peakHourCharge + total;
+        }
+        else{
+            total = parseInt(total);
+            peakHourCharge = 0;
+            peakHourTotal = total;
+        }
+        localStorage.setItem("peakHourCharge",peakHourCharge);
+        localStorage.setItem("peakHourTotal",peakHourTotal);
+        //alert("Peak Charge: " + peakHourCharge);
+        //alert("Peak Total: " + peakHourTotal);
+        checkSeniorCitizen(seniorCitizen, peakHourTotal);
+}
+function checkSeniorCitizen(seniorCitizen, peakHourTotal){
+    let seniorDiscountPrice;
+    let seniorTotal;
+    if(seniorCitizen){
+        seniorDiscountPrice=(peakHourTotal * 0.3);
+        seniorTotal=peakHourTotal - seniorDiscountPrice;
+    }
+    else{
+        seniorDiscountPrice = 0;
+        seniorTotal = peakHourTotal;
+    }
+    //alert("Senior Discount: " + seniorDiscountPrice);
+    //alert("Final Amount: " +  seniorTotal);
+    localStorage.setItem("seniorDiscountPrice",seniorDiscountPrice);
+    localStorage.setItem("seniorTotal",seniorTotal);
+}
+    // document.getElementById("book").innerHTML="******Cab Booked Successfully****** ";
+</script>
+</html>
