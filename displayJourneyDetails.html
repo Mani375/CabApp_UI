@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body onload="displayJourneyDetails()">
+    <center>
+    <h3>Journey Details</h3>
+    <p id="cabType"></p>
+    <p id="dist"></p>
+    <p id="journeyDate"></p>
+    <p id="pickupTime"></p>
+    <p id="fare"></p>
+    <p id="gst"></p>
+    <p id="total"></p>
+    <p id="peakHourCharge"></p>
+    <p id="seniorDiscountPrice"></p>
+    <p id="seniorTotal"></p>
+    <h3>Thank you for using our service</h3>
+    <h3>Visit Again</h3>
+</center>
+</body>
+<script>
+    function displayJourneyDetails(){
+        let cabType = localStorage.getItem("cabType");  
+        let dist = localStorage.getItem("dist");  
+        let journeyDate = localStorage.getItem("journeyDate"); 
+        let pickupTime = localStorage.getItem("pickupTime");
+        let fare = localStorage.getItem("fare");
+        let gst = localStorage.getItem("gst");
+        let total = localStorage.getItem("total");
+        let peakHourCharge = localStorage.getItem("peakHourCharge");
+        let seniorDiscountPrice = localStorage.getItem("seniorDiscountPrice");
+        let seniorTotal = localStorage.getItem("seniorTotal");
+
+        document.getElementById("cabType").innerHTML="Cab Type :" + cabType;
+        document.getElementById("dist").innerHTML="Journey Distance :" + dist;
+        document.getElementById("journeyDate").innerHTML="Journey Date :" + journeyDate;
+        document.getElementById("pickupTime").innerHTML="Pickup Time :" + pickupTime;
+        document.getElementById("fare").innerHTML="Base Price : Rs." + fare;
+        document.getElementById("gst").innerHTML="Tax 7.0% : Rs." + gst;
+        document.getElementById("total").innerHTML="SUBTOTAL : Rs." + total;
+        document.getElementById("peakHourCharge").innerHTML="Peak Hour Charges : Rs." + peakHourCharge;
+        document.getElementById("seniorDiscountPrice").innerHTML="Senior Citizen Discount : Rs. -" + seniorDiscountPrice;
+        document.getElementById("seniorTotal").innerHTML="Final Amount : Rs." + seniorTotal;
+    }
+</script>
+</html>
