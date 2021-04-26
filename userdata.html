@@ -10,20 +10,20 @@
     <center>
     <div id="book">
     <h3>Enter Journey Details</h3>
-    <form method=POST>
+    <form method=POST onsubmit="book()">
         <input type="hidden" name="ip" value="1.1.1.1"><br>
         <label>Journey Date:</label><br>
-        <input type="date" name="journeyDate" id="journeyDate" checked><br><br>
+        <input type="date" name="journeyDate" id="journeyDate" required checked><br><br>
         <label>Pickup Time:</label><br>
-        <input type="time" name="pickupTime" id="pickupTime"/><br><br>
+        <input type="time" name="pickupTime" id="pickupTime" required/><br><br>
         <label>Senior Citizen:</label><br>
-        <input type="radio" name="senior" id="senior" value="Yes"/>Yes
+        <input type="radio" name="senior" id="senior" value="Yes" required/>Yes
         <input type="radio" name="senior" id="senior" value="No" />No<br><br>
         Gender:<br>
-        <input type="radio" name="gender" value="Male"/>Male
+        <input type="radio" name="gender" value="Male" required/>Male
         <input type="radio" name="gender" value="Female"/>Female
         <input type="radio" name="gender" value="Transgender"/>Transgender<br><br>
-        <button onclick="book()">Confirm</button>
+        <button type="submit">Confirm</button>
         </form>
     </div>
         </center>
