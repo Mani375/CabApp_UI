@@ -45,7 +45,7 @@
 				fare = 20 * dist;
 			//alert("Fare : " + fare);
 			let gst =(fare * 0.07);
-			gst = parseFloat(gst);
+			gst = parseInt(gst);
 			let total = gst + fare;
 			localStorage.setItem("fare",fare);
 			localStorage.setItem("gst",gst);
